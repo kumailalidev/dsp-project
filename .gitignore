@@ -1,0 +1,9 @@
+# Virtual environment
+.venv/
+
+# Visual Studio Code
+.vscode/
+
+# Project files
+db.sqlite3
+media/dataset/
