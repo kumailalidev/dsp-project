@@ -8,7 +8,7 @@ This file will generate dataset of students using camera
 import cv2
 
 # Define video capture object with cam variable
-camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+camera = cv2.VideoCapture(0)
 
 # Setting camera parameters
 camera.set(3, 640)  # set video width

@@ -23,7 +23,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 
 
 # Initialize and start realtime video capture
-cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cam = cv2.VideoCapture(0)
 
 # Setting camera parameters
 cam.set(3, 640)  # set video width
