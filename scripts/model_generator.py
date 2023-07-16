@@ -11,7 +11,7 @@ from PIL import Image
 import os
 
 # Path for the students face image database
-path = "media/dataset"
+path = "media/temp"
 
 # Creating face recognizer using Local Binary Patterns Histogram (LBPH)
 recognizer = cv2.face.LBPHFaceRecognizer.create()
@@ -50,7 +50,7 @@ faces, seat_numbers = get_images_and_labels(path)
 recognizer.train(faces, np.array(seat_numbers))
 
 # Save the model into trainer/trainer.yml
-recognizer.save("media/trainer/trainer.yml")
+recognizer.save("media/trainer/temp/temp_trainer.yml")
 
 # Print the number of faces trained and suspend program
 print(

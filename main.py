@@ -12,7 +12,7 @@ from scripts import attendance
 recognizer = cv2.face.LBPHFaceRecognizer.create()
 
 # Loading trained model
-recognizer.read("media/trainer/trainer.yml")
+recognizer.read("media/trainer/temp/temp_trainer.yml")
 
 # Using haarcascade
 cascadePath = "media/haarcascades/haarcascade_frontalface_default.xml"
@@ -65,8 +65,8 @@ while True:
             seat_number = "UNKNOWN STUDENT"
             confidence = "{0}%".format(round(confidence))
 
-        cv2.putText(img, str(seat_number), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
-        cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
+        cv2.putText(img, str(seat_number), (x + 5, y - 5), font, 1, (0, 255, 0), 2)
+        cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (0, 255, 0), 1)
 
     cv2.imshow("Attendance System", img)
 
