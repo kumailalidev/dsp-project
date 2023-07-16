@@ -6,7 +6,7 @@ sqlite database
 """
 
 import csv
-from attendance_system.models import Attendance
+from attendance_system.models import Attendance, Student
 from django.db import IntegrityError
 
 
@@ -17,17 +17,32 @@ def csv_to_database():
     """
     file_path = "media/csv/attendance.csv"
     with open(file_path, "r") as file:
+        student = Student()
         reader = csv.reader(file)
-        next(reader)  # Skip header row if present
         for row in reader:
-            (
-                seat_number,
-                date,
-                entrance_time,
-            ) = row  # Adjust the assignment based on your CSV structure
             try:
+                # Getting data from CSV file
+                (
+                    seat_number,
+                    date,
+                    entrance_time,
+                ) = row
+                # Getting student object instance
+                student = Student.objects.get(seat_number=seat_number)
+
+                # Creating attendance object if student exists in database
                 Attendance.objects.create(
-                    seat_number=seat_number, date=date, entrance_time=entrance_time
+                    student=student, date=date, entrance_time=entrance_time
                 )
+
+            except Student.DoesNotExist:
+                print("[ERROR]: Failed to load student data.")
+
             except IntegrityError:
-                pass
+                print(f"[INFO]: Attendance record of {student.full_name} already exits")
+            except ValueError:
+                print(
+                    "[ERROR]: Please check your CSV file, it may be empty or contains bad data"
+                )
+            except Exception as e:
+                print(e.__class__.__name__)

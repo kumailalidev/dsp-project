@@ -47,7 +47,7 @@ while True:
             gray[y : y + h, x : x + w],
         )
         print(f"PLEASE WAIT: {count}")
-        cv2.imshow("image", img)
+        cv2.imshow("Dataset Generator", img)
 
     # Press 'ESC' for exiting video
     k = cv2.waitKey(100) & 0xFF

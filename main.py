@@ -51,11 +51,11 @@ while True:
     for x, y, w, h in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
         seat_number, confidence = recognizer.predict(gray[y : y + h, x : x + w])
-        print(f"{confidence}-EH{seat_number}")
+        # print(f"EH{seat_number}, Confidence:{round(confidence)}%")
 
         # Checking confidence level and mark attendance of student
-        if confidence < 100:
-            confidence = " {0}%".format(round(100 - confidence))
+        if confidence >= 40 and confidence <= 80:
+            confidence = "{0}%".format(round(confidence))
             seat_number = "EH" + str(seat_number)
 
             # Mark attendance
@@ -63,7 +63,7 @@ while True:
 
         else:
             seat_number = "UNKNOWN STUDENT"
-            confidence = " {0}%".format(round(100 - confidence))
+            confidence = "{0}%".format(round(confidence))
 
         cv2.putText(img, str(seat_number), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
         cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)

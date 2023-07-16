@@ -29,5 +29,5 @@ def mark_attendance(seat_number):
             f_date = current_datetime.date().isoformat()
             f_time = current_datetime.time().strftime("%H:%M:%S")
 
-            csv_file.writelines(f"\n{seat_number},{f_date},{f_time}")
+            csv_file.writelines(f"{seat_number},{f_date},{f_time}\n")
             print(f"ATTENDANCE MARKED: {seat_number}")
