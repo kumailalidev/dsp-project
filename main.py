@@ -54,7 +54,7 @@ while True:
         # print(f"EH{seat_number}, Confidence:{round(confidence)}%")
 
         # Checking confidence level and mark attendance of student
-        if confidence >= 40 and confidence <= 80:
+        if confidence >= 40 and confidence < 100:
             confidence = "{0}%".format(round(confidence))
             seat_number = "EH" + str(seat_number)
 
