@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Attendance
+from django.shortcuts import get_object_or_404, render
+from .models import Student, Attendance
 from scripts import data_loader
 
 
@@ -19,4 +19,20 @@ def index(request):
         "attendance_record": attendance_records,
     }
 
-    return render(request, "attendance_system/index.html", attendance_records)
+    return render(request, "home.html", attendance_records)
+
+
+def student(request, seat_number):
+    """
+    Function to handle student information page.
+    """
+
+    # Fetching student data from database
+    student_info = get_object_or_404(Student, seat_number=seat_number)
+
+    # context
+    context = {
+        "student": student_info,
+    }
+
+    return render(request, "student.html", context)

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex flex-row justify-content-between">
+    <div class="p-2">
+        <h2>Student Information</h2>
+    </div>
+    <div class="p-2">
+        <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+    </div>
+</div>
+<div class="card mx-auto" style="width: 26rem;">
+    <img class="card-img-top rounded-circle p-4" src="{{ student.image.url }}" alt="Student Photo">
+    <div class="card-body">
+        <p class="card-text">Name: <strong>{{ student.full_name }}</strong></p>
+        <p class="card-text">Fathers Name: <strong>{{ student.fathers_name }}</strong></p>
+        <p class="card-text">Seat Number: <strong>{{ student.seat_number }}</strong></p>
+        <p class="card-text">Enrollment Number: <strong>{{ student.enrollment_number }}</strong></p>
+        <p class="card-text">Program: <strong>{{ student.program }}</strong></p>
+        <p class="card-text">Email: <strong>{{ student.email }}</strong></p>
+    </div>
+</div>
+{% endblock %}

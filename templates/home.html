@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if attendance_record %}
+    <div class="d-flex flex-row justify-content-between">
+        <div class="p-2">
+        <h2>Attendance Records</h2>
+        </div>
+        <div class="p-2">
+        <button class="btn btn-primary" onclick="location.reload()">Refresh</button>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Seat Number</th>
+            <th scope="col">Entrance Time</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance_record %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><a class="link-dark" href="{% url 'student' record.student.seat_number %}">{{ record.student.seat_number }}</a></td>
+                <td>{{ record.entrance_time|time:"h:i:s A" }}</td>
+                <td>{{ record.date }}</td>
+    
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="d-flex justify-content-center"><strong>No Attendance Records Found.</strong></div>
+{% endif %}
+{% endblock %}
